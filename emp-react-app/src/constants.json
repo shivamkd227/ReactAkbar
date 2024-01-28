@@ -1,0 +1,11 @@
+{
+    "months" : [
+    "November"
+    ],
+    "base_api" : "http://localhost:8080/",
+    "fetchMonthlyDataEndpoint" : "fetchMonthlyData",
+    "dayWiseReportEndpoint" :"dayWiseReport",
+    "fineForMonthEndpoint" : "fineForMonth",
+    "monthlyExcelReportEndpoint" : "monthlyExcelReport"
+ 
+}

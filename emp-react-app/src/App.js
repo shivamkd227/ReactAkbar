@@ -1,25 +1,74 @@
-import logo from './logo.svg';
+import React from 'react';
+import MealTable from './Table'; 
+import { fetchPost } from './helpers/apihelpers';
+import constants from './constants.json';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showDropdown: false,
+      showTable: false,
+      selectedMonth: '' 
+    };
+  }
+
+  handleEnterPortalClick = () => {
+    this.setState({ showDropdown: true, showTable: false });
+    const {base_api , fetchMonthlyDataEndpoint } = constants;
+    let api_url = base_api + fetchMonthlyDataEndpoint;
+    fetchPost(api_url, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: this.state.selectedMonth
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+  };
+
+  handleMonthSelect = (event) => {
+    this.setState({ 
+      showTable: true,
+      selectedMonth: event.target.value // Update the selected month
+    });
+  };
+
+  handleBackClick = () => {
+    this.setState({ showDropdown: false, showTable: false });
+  };
+
+  render() {
+    const { months } = constants;
+    const { showDropdown, showTable } = this.state;
+    return (
+      <div className='App'>
+        <h1 className='App-header'>Welcome to the Portal Page</h1>
+        <div className='App-body'>
+          {!showTable && !showDropdown && (
+            <button className='App-button' onClick={this.handleEnterPortalClick}>Enter Portal</button>
+          )}
+
+          {showDropdown && (
+            <select onChange={this.handleMonthSelect} defaultValue="">
+              <option value="" disabled>Select a month</option>
+              {months.map((month, index) => (
+                <option key={index} value={month}>{month}</option>
+              ))}
+            </select>
+          )}
+
+          {showTable && ( <MealTable month={this.state.selectedMonth} />)}
+
+          {(showDropdown || showTable) && (
+            <button onClick={this.handleBackClick}>Back to Previous</button>
+          )}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
