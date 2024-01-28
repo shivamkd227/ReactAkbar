@@ -367,7 +367,7 @@ export class MealTable extends React.Component {
     //       };
     // let dummyMeals = this.convertDataToReportFormat(dummyResponseMeals);
     // this.setState({ meals: dummyMeals.report, fine : 100, showWarning: true});
-    const {base_api, fetchMonthlyDataEndpoint , fineForMonth, dayWiseReportEndpoint } = constants;
+    const {base_api, fetchMonthlyDataEndpoint , fineForMonthEndpoint, dayWiseReportEndpoint } = constants;
     let api_url = base_api + fetchMonthlyDataEndpoint;
     let payload = this.getMonthNumber(this.props.month);
     //fetchMonthlyData
@@ -381,7 +381,7 @@ export class MealTable extends React.Component {
     .then(data => console.log(data))
     .catch(error => console.error(error));
 
-    api_url = base_api + fineForMonth;
+    api_url = base_api + fineForMonthEndpoint;
     fetchPost(api_url, {
       method: 'POST', 
       headers: {
@@ -439,7 +439,7 @@ export class MealTable extends React.Component {
   getMonthNumber(monthName) {
     const months = constants.months;
     const monthIndex = months.indexOf(monthName);
-    return monthIndex >= 0 ? String(monthIndex + 1) : null;
+    return monthIndex >= 0 ? (monthIndex + 1) : null;
   }
 
 

@@ -1,8 +1,16 @@
 {
+<<<<<<< Updated upstream
     "months" : [
     "November",
     "December"
     ],
+=======
+    "months": [
+        "January", "February", "March", "April",
+        "May", "June", "July", "August",
+        "September", "October", "November", "December"
+      ],
+>>>>>>> Stashed changes
     "base_api" : "http://localhost:8080/",
     "fetchMonthlyDataEndpoint" : "fetchMonthlyData",
     "dayWiseReportEndpoint" :"dayWiseReport",
