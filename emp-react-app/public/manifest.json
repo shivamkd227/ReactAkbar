@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "EMT",
+  "name": "Employee Meal Tracker",
   "icons": [
     {
       "src": "favicon.ico",
