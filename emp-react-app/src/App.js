@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDropdown: false,
+      showDropdown: true,
       showTable: false,
       selectedMonth: '' 
     };
@@ -28,7 +28,7 @@ class App extends React.Component {
   };
 
   handleBackClick = () => {
-    this.setState({ showDropdown: false, showTable: false });
+    this.setState({ showTable: false , selectedMonth: '' }, ()=>{});
   };
 
   render() {
@@ -36,26 +36,31 @@ class App extends React.Component {
     const { showDropdown, showTable } = this.state;
     return (
       <div className='App'>
-        <h1 className='App-header'>Welcome to the Portal Page</h1>
+        <h1 className='App-header'>Welcome to your Employee-meal-tracker page</h1>
         <div className='App-body'>
           {!showTable && !showDropdown && (
             <button className='App-button' onClick={this.handleEnterPortalClick}>Enter Portal</button>
           )}
 
           {showDropdown && (
-            <select onChange={this.handleMonthSelect} defaultValue="">
-              <option value="" disabled>Select a month</option>
-              {months.map((month, index) => (
-                <option key={index} value={month}>{month}</option>
-              ))}
-            </select>
+            <div className='select-container'>
+              <select
+                className="select-dropdown"
+                onChange={this.handleMonthSelect}
+                value={this.state.selectedMonth} // Control the dropdown's value
+              >
+                <option value="" disabled>Select a month</option>
+                {months.map((month, index) => (
+                  <option key={index} value={month}>{month}</option>
+                ))}
+              </select>
+            </div>
           )}
-
+          {( showTable) && (
+            <button className='App-button-secondary' onClick={this.handleBackClick}>Back to Previous</button>
+          )}
           {showTable && ( <MealTable month={this.state.selectedMonth} />)}
 
-          {(showDropdown || showTable) && (
-            <button onClick={this.handleBackClick}>Back to Previous</button>
-          )}
         </div>
       </div>
     );

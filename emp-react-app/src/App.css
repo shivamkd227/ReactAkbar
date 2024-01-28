@@ -21,7 +21,7 @@
   background-color: #808080; /* Grey background */
   color: white;             /* White text */
   border: none;             /* No border */
-  padding: 10px 20px;       /* Padding inside the button */
+  padding: 20px 20px;       /* Padding inside the button */
   text-align: center;       /* Center the text */
   text-decoration: none;    /* No underline */
   display: inline-block;    /* Inline-block display */
@@ -37,6 +37,27 @@
   background-color: #666; /* Darker shade when hovered */
   box-shadow: 0 2px #444; /* Smaller shadow when hovered */
   transform: translateY(2px); /* Slightly move the button up */
+}
+
+.App-button-secondary {
+  background-color: #a9a9a9; /* Light gray background */
+  color: black;              /* Black text */
+  border: 2px solid #a9a9a9; /* Solid border with same color as background */
+  padding: 8px 16px;         /* Smaller padding than primary button */
+  text-align: center;        /* Center the text */
+  text-decoration: none;     /* No underline */
+  display: inline-block;     /* Inline-block display */
+  font-size: 14px;           /* Smaller font size */
+  margin: 4px 2px;           /* Margin around the button */
+  cursor: pointer;           /* Pointer cursor on hover */
+  border-radius: 4px;        /* Smaller border radius */
+  box-shadow: 0 2px #787878; /* Smaller shadow, darker shade of gray */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.App-button-secondary:hover {
+  background-color: #787878; /* Darker shade when hovered */
+  border-color: #787878;     /* Border color changes on hover */
 }
 
 /* @media (prefers-reduced-motion: no-preference) {
@@ -60,6 +81,45 @@
   color: #61dafb;
 }
 
+.select-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style the dropdown */
+.select-dropdown {
+  background-color: white;  /* White background */
+  color: #808080;           /* Grey text */
+  padding: 10px 15px;       /* Padding */
+  border: 2px solid #808080; /* Grey border */
+  border-radius: 8px;       /* Rounded corners */
+  margin: 4px 2px;          /* Margin around the dropdown */
+  cursor: pointer;          /* Pointer cursor on hover */
+  font-size: 16px;          /* Font size */
+  outline: none;            /* Remove default outline */
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+  -moz-appearance: none;    /* Remove default styling in Firefox */
+  appearance: none;         /* Remove default styling */
+  width: 100%;             /* Full width of the container */
+}
+
+/* Style for hover effect */
+.select-dropdown:hover {
+  border-color: #131313;       /* Darker border on hover */
+}
+
+/* Custom dropdown arrow using pseudo-elements */
+.select-container:after {
+  content: '\25BC'; /* Unicode downward arrow */
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  color: #808080;           /* Arrow color */
+  pointer-events: none;     /* Prevent arrow from being clickable */
+  font-size: 12px;          /* Arrow size */
+}
+
 .warning-box {
   border: 1px solid #ffa500;
   padding: 10px;
@@ -80,6 +140,44 @@
 
 .popup-content {
   text-align: center;
+}
+
+/* Center align the table on the page */
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the table */
+.table-container table {
+  border-collapse: collapse;
+  width: 80%; /* Adjust the width as needed */
+  margin: 20px 0; /* Space above and below the table */
+}
+
+/* Style the table headers */
+.table-container th {
+  background-color: #aaa6a6; /* Light gray background for headers */
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #a19f9f;
+}
+
+/* Style the table rows */
+.table-container td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternate row colors */
+.table-container tr:nth-child(even) {
+  background-color: #a4a3a3; 
+  color: #fdfafa;
+}
+
+.table-container tr:nth-child(odd) {
+  background-color: white; 
 }
 
 
