@@ -2,6 +2,9 @@ import React from 'react';
 import constants from './constants.json';
 import { fetchPost } from './helpers/apihelpers';
 import WarningBox from './warningBox';
+import LineChart from './LineChart';
+import BarGraph from './BarGraph';
+import Popup from './Popup';
 import './App.css';
 
 export class MealTable extends React.Component {
@@ -10,7 +13,10 @@ export class MealTable extends React.Component {
     this.state = {
       meals: [] ,
       fine: 0,
-      showWarning: false
+      showWarning: false,
+      showLineChart : false,
+      showBarGraph : false,
+      showPopup: false
     };
   }
 
@@ -442,6 +448,14 @@ export class MealTable extends React.Component {
     return monthIndex >= 0 ? (monthIndex + 1) : null;
   }
 
+  hanlderAnalysisGeneration = () =>{
+    // this.setState({showPopup : true, showBarGraph: true});
+    this.togglePopup();
+  }
+
+  togglePopup = () => {
+    this.setState((prevState) => ({ showPopup: !prevState.showPopup }));
+  };
 
 
   getMealStatus(status) {
@@ -501,9 +515,20 @@ export class MealTable extends React.Component {
         <button className='App-button' onClick={this.handleDownloadReport}>
             Download Excel
         </button>
-        <button className='App-button' onClick={this.handleDownloadReport}>
+        <button className='App-button' onClick={this.hanlderAnalysisGeneration}>
             Run Analytics
         </button>
+        {this.state.showPopup && <Popup onClose={this.togglePopup} />}
+        { this.state.showLineChart && (
+          <div>
+            <LineChart/>
+          </div>
+        ) }
+        { this.state.showBarGraph && (
+          <div>
+            <BarGraph/>
+          </div>
+        ) }
       </div>
     );
   }
