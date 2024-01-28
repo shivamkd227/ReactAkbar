@@ -1,6 +1,5 @@
 import React from 'react';
 import MealTable from './Table'; 
-import { fetchPost } from './helpers/apihelpers';
 import constants from './constants.json';
 import './App.css';
 
@@ -16,24 +15,16 @@ class App extends React.Component {
 
   handleEnterPortalClick = () => {
     this.setState({ showDropdown: true, showTable: false });
-    const {base_api , fetchMonthlyDataEndpoint } = constants;
-    let api_url = base_api + fetchMonthlyDataEndpoint;
-    fetchPost(api_url, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: this.state.selectedMonth
-    })
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
   };
 
   handleMonthSelect = (event) => {
     this.setState({ 
-      showTable: true,
+      showTable: false,
       selectedMonth: event.target.value // Update the selected month
+    }, () =>{
+      
     });
+
   };
 
   handleBackClick = () => {

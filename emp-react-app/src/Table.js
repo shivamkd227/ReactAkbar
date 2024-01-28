@@ -43,15 +43,28 @@ export class MealTable extends React.Component {
     // ];
     // this.setState({ meals: dummyMeals, fine : 600, showWarning: true});
     
-    const {base_api , fineForMonth, dayWiseReportEndpoint } = constants;
-    let api_url = base_api + fineForMonth;
+    const {base_api, fetchMonthlyDataEndpoint , fineForMonth, dayWiseReportEndpoint } = constants;
+    let api_url = base_api + fetchMonthlyDataEndpoint;
+    let payload = this.getMonthNumber(this.props.month);
+    //fetchMonthlyData
     fetchPost(api_url, {
         method: 'POST', 
         headers: {
-            'Content-Type': 'application/json'
-        },
-        body: this.getMonthNumber(this.props.month),
-    })
+            'Content-Type': 'text/plain'
+        }
+    },
+    payload)
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+    api_url = base_api + fineForMonth;
+    fetchPost(api_url, {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'text/plain'
+      }
+    },
+    payload)
     .then(data =>{
          console.log(data)
          let totalFine = data.fine;
@@ -63,12 +76,12 @@ export class MealTable extends React.Component {
     
     api_url = base_api + dayWiseReportEndpoint;
     fetchPost(api_url, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: this.getMonthNumber(this.props.month),
-    })
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'text/plain'
+      }
+    },
+    payload)
     .then(data =>{
          console.log(data)
          let mealsReport = this.convertDataToReportFormat(data);
@@ -80,13 +93,14 @@ export class MealTable extends React.Component {
   handleDownloadReport = () => {
     const {base_api , monthlyExcelReportEndpoint } = constants;
     let api_url = base_api + monthlyExcelReportEndpoint;
+    let payload = this.getMonthNumber(this.props.month);
     fetchPost(api_url, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: this.getMonthNumber(this.props.month),
-    })
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'text/plain'
+      }
+    },
+    payload)
     .then(data =>{
          console.log(data)
         })
