@@ -19,7 +19,7 @@ class App extends React.Component {
 
   handleMonthSelect = (event) => {
     this.setState({ 
-      showTable: false,
+      showTable: true,
       selectedMonth: event.target.value // Update the selected month
     }, () =>{
       
