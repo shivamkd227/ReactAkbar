@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryChart, VictoryBar, VictoryAxis, VictoryTheme } from 'victory';
+import { VictoryChart, VictoryBar, VictoryAxis, VictoryTheme,VictoryContainer } from 'victory';
 
 export class BarGraph extends React.Component {
     processData(dataObject) {
@@ -11,11 +11,14 @@ export class BarGraph extends React.Component {
     render() {
         // Process the incoming data prop
         let processedData = this.processData(this.props.data);
+        let title = this.props.title;
         return (
-        <VictoryChart
-            theme={VictoryTheme.material}
-            domainPadding={20}
-        >
+        <div>
+             <h1>{title}</h1>   
+                <VictoryChart
+                    theme={VictoryTheme.material}
+                    domainPadding={20}
+                >
             <VictoryBar
             data={processedData}
             style={{
@@ -30,7 +33,8 @@ export class BarGraph extends React.Component {
             dependentAxis
             // Configure the axis if needed
             />
-        </VictoryChart>
+            </VictoryChart>
+        </div>
         );
     }
 }

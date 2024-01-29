@@ -21,362 +21,10 @@ export class MealTable extends React.Component {
   }
 
   componentDidMount() {   
-    // let dummyResponseMeals = {
-    //         "1": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-1",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             1
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "2": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-2",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             2
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "3": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-3",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             3
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "4": {
-    //           "breakFast": 2,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-4",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             4
-    //           ],
-    //           "dinner": 2
-    //         },
-    //         "5": {
-    //           "breakFast": 4,
-    //           "lunch": 4,
-    //           "fine": 0,
-    //           "dateString": "2023-11-5",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             5
-    //           ],
-    //           "dinner": 4
-    //         },
-    //         "6": {
-    //           "breakFast": 3,
-    //           "lunch": 1,
-    //           "fine": 100,
-    //           "dateString": "2023-11-6",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             6
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "7": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-7",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             7
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "8": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-8",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             8
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "9": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-9",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             9
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "10": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 100,
-    //           "dateString": "2023-11-10",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             10
-    //           ],
-    //           "dinner": 3
-    //         },
-    //         "11": {
-    //           "breakFast": 2,
-    //           "lunch": 2,
-    //           "fine": 0,
-    //           "dateString": "2023-11-11",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             11
-    //           ],
-    //           "dinner": 2
-    //         },
-    //         "12": {
-    //           "breakFast": 4,
-    //           "lunch": 4,
-    //           "fine": 0,
-    //           "dateString": "2023-11-12",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             12
-    //           ],
-    //           "dinner": 4
-    //         },
-    //         "13": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-13",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             13
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "14": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-14",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             14
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "15": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-15",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             15
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "16": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-16",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             16
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "17": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-17",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             17
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "18": {
-    //           "breakFast": 2,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-18",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             18
-    //           ],
-    //           "dinner": 2
-    //         },
-    //         "19": {
-    //           "breakFast": 4,
-    //           "lunch": 4,
-    //           "fine": 0,
-    //           "dateString": "2023-11-19",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             19
-    //           ],
-    //           "dinner": 4
-    //         },
-    //         "20": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-20",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             20
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "21": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-21",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             21
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "22": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-22",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             22
-    //           ],
-    //           "dinner": 2
-    //         },
-    //         "23": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-23",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             23
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "24": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-24",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             24
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "25": {
-    //           "breakFast": 2,
-    //           "lunch": 2,
-    //           "fine": 0,
-    //           "dateString": "2023-11-25",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             25
-    //           ],
-    //           "dinner": 2
-    //         },
-    //         "26": {
-    //           "breakFast": 4,
-    //           "lunch": 4,
-    //           "fine": 0,
-    //           "dateString": "2023-11-26",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             26
-    //           ],
-    //           "dinner": 4
-    //         },
-    //         "27": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-27",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             27
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "28": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-28",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             28
-    //           ],
-    //           "dinner": 1
-    //         },
-    //         "29": {
-    //           "breakFast": 1,
-    //           "lunch": 1,
-    //           "fine": 0,
-    //           "dateString": "2023-11-29",
-    //           "localDate": [
-    //             2023,
-    //             11,
-    //             29
-    //           ],
-    //           "dinner": 1
-    //         }
-    //       };
-    // let dummyMeals = this.convertDataToReportFormat(dummyResponseMeals);
-    // this.setState({ meals: dummyMeals.report, fine : 100, showWarning: true});
     const {base_api, fetchMonthlyDataEndpoint , fineForMonthEndpoint, dayWiseReportEndpoint } = constants;
     let api_url = base_api + fetchMonthlyDataEndpoint;
     let payload = this.getMonthNumber(this.props.month);
-    //fetchMonthlyData
+    //fetchMonthlyData i.e call Benzy's API to get all food order data for given month
     fetchPost(api_url, {
         method: 'POST', 
         headers: {
@@ -385,7 +33,7 @@ export class MealTable extends React.Component {
     },
     payload)
     .then(data => console.log(data))
-    .catch(error => console.error(error));
+    .catch(error => console.error(error));//No processing; capture no response. Later, extract and show employee name.
 
     api_url = base_api + fineForMonthEndpoint;
     fetchPost(api_url, {
@@ -426,20 +74,8 @@ export class MealTable extends React.Component {
   }
 
   handleDownloadReport = () => {
-    const {base_api , monthlyExcelReportEndpoint } = constants;
-    let api_url = base_api + monthlyExcelReportEndpoint;
-    let payload = this.getMonthNumber(this.props.month);
-    fetchPost(api_url, {
-      method: 'POST', 
-      headers: {
-          'Content-Type': 'text/plain'
-      }
-    },
-    payload)
-    .then(data =>{
-         console.log(data)
-        })
-    .catch(error => console.error(error));
+    const url = "http://localhost:8080/monthlyExcelReport";
+    window.open(url, '_blank');
   }
 
   getMonthNumber(monthName) {
@@ -460,7 +96,7 @@ export class MealTable extends React.Component {
 
   getMealStatus(status) {
     const mealstatus = {
-      1: 'Completed', // Completed
+      1: 'Delivered', // Delivered
       2: 'Canceled', // Canceled
       3: 'Pending',    // Pending
       4: 'Unknown'    // Unknown
@@ -519,16 +155,6 @@ export class MealTable extends React.Component {
             Run Analytics
         </button>
         {this.state.showPopup && <Popup onClose={this.togglePopup} />}
-        { this.state.showLineChart && (
-          <div>
-            <LineChart/>
-          </div>
-        ) }
-        { this.state.showBarGraph && (
-          <div>
-            <BarGraph/>
-          </div>
-        ) }
       </div>
     );
   }

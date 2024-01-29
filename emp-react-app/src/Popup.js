@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner';
 import './App.css';
-import LineChart from './LineChart';
 import BarGraph from './BarGraph';
+import PieGraph from './PieGraph';
+import { fetchPost } from './helpers/apihelpers';
+import constants from './constants.json';
+import LineGraph from './LineGraph';
 
 class Popup extends Component {
   constructor(props) {
@@ -11,25 +14,96 @@ class Popup extends Component {
       isLoading: true,
       linechartJsonData: [],
       categorizedMealStatusJsonData: {},
-      categorizedMealTypeJsonData: {}
+      categorizedMealTypeJsonData: {},
+
+      mealordercountJsonData :{},
+      deliveredPendingCancelCountJsonObject :{},
+      individualMealWastePercentageJsonObject :{},
+      totalMealWastePercentageJsonObject :{}
     };
+  }
+  getMonthNumber() {
+   
+    return 1;
   }
 
   componentDidMount() {
+    this.setState({isLoading:true})
     // Simulate an API call
+    const {base_api, mealOrderCount , deliveredPendingCancelCount, individualMealWastePercentage,totalMealWastePercentage } = constants;
+    //First API CALL 
+    let api_url = base_api + mealOrderCount;
+      let payload = this.getMonthNumber();
+      fetchPost(api_url, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'text/plain'
+        }
+      },payload)
+      .then(data =>{
+           console.log(data)
+           this.setState({ mealordercountJsonData: data});
+          })
+      .catch(error => console.error(error));
+      
+
+      //2 API CALL 
+      api_url = base_api + deliveredPendingCancelCount;
+      fetchPost(api_url, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'text/plain'
+        }
+      },payload)
+      .then(data =>{
+           console.log(data)
+           this.setState({ deliveredPendingCancelCountJsonObject: data});
+          })
+      .catch(error => console.error(error));
+
+
+
+      //3rd API CAll
+      api_url = base_api + individualMealWastePercentage;
+      fetchPost(api_url, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'text/plain'
+        }
+      },payload)
+      .then(data =>{
+           console.log(data)
+           this.setState({ individualMealWastePercentageJsonObject: data});
+          })
+      .catch(error => console.error(error));
+
+
+
+      //4th API Call
+      api_url = base_api + totalMealWastePercentage;
+      fetchPost(api_url, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'text/plain'
+        }
+      },payload)
+      .then(data =>{
+           console.log(data)
+           this.setState({ totalMealWastePercentageJsonObject: data});
+          })
+      .catch(error => console.error(error));
+
     this.fetchData();
   }
 
+  convertDataToReportFormat(data) {
+    const reportArray = Object.values(data);
+    return { "report": reportArray };
+  }
+
   fetchData = () => {
-    // Replace this with your actual API call
     setTimeout(() => {
-      this.setState({ isLoading: false, linechartJsonData:  [
-        {"2023-11-1":"0"},{"2023-11-2":"0"},{"2023-11-3":"0"},{"2023-11-4":"2.7"},{"2023-11-5":"2.7"},{"2023-11-6":"2.7"},{"2023-11-7":"2.7"},{"2023-11-8":"2.7"},{"2023-11-9":"2.7"},{"2023-11-10":"2.7"},{"2023-11-11":"6.8"},{"2023-11-12":"6.8"},{"2023-11-13":"6.8"},{"2023-11-14":"6.8"},{"2023-11-15":"6.8"},{"2023-11-16":"6.8"},{"2023-11-17":"6.8"},{"2023-11-18":"9.6"},{"2023-11-19":"9.6"},{"2023-11-20":"9.6"},{"2023-11-21":"9.6"},{"2023-11-22":"11"},{"2023-11-23":"11"},{"2023-11-24":"11"},{"2023-11-25":"15.1"},{"2023-11-26":"15.1"},{"2023-11-27":"15.1"},{"2023-11-28":"15.1"},{"2023-11-29":"15.1"}
-        ],
-        categorizedMealStatusJsonData :  {"Unknown":0,"Completed":62,"Canceled":11,"Pending":2},
-        categorizedMealTypeJsonData : {}
-    });
-    }, 2000); // simulate an API call delay
+    }, 3000); 
   };
 
   render() {
@@ -44,9 +118,14 @@ class Popup extends Component {
             </div>
             : 
             <div>
-                <BarGraph data={this.state.categorizedMealStatusJsonData}/>
-                <BarGraph data={this.state.categorizedMealTypeJsonData}/>
-                <LineChart data={this.state.linechartJsonData}/>
+                <BarGraph data={this.state.mealordercountJsonData} title={"Type of Meal Ordered"}/>
+                <PieGraph data={this.state.deliveredPendingCancelCountJsonObject} title={"Monthly order Status Overview"}/>
+
+                
+                <LineGraph data={this.state.totalMealWastePercentageJsonObject}  title = {"Total Food Wastage"}/>
+                <LineGraph data={this.state.individualMealWastePercentageJsonObject}  title = {"Individual Food Wastage"}/>
+                
+              
             </div>
             }
             <button onClick={this.props.onClose}>Close</button>

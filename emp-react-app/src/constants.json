@@ -1,20 +1,20 @@
 {
-<<<<<<< Updated upstream
-    "months" : [
-    "November",
-    "December"
-    ],
-=======
     "months": [
         "January", "February", "March", "April",
         "May", "June", "July", "August",
         "September", "October", "November", "December"
       ],
->>>>>>> Stashed changes
     "base_api" : "http://localhost:8080/",
     "fetchMonthlyDataEndpoint" : "fetchMonthlyData",
     "dayWiseReportEndpoint" :"dayWiseReport",
     "fineForMonthEndpoint" : "fineForMonth",
-    "monthlyExcelReportEndpoint" : "monthlyExcelReport"
+    "monthlyExcelReportEndpoint" : "monthlyExcelReport",
+    "mealOrderCount":"meal-order-count" ,
+    "deliveredPendingCancelCount":"delivered-pending-cancel-count",
+    "individualMealWastePercentage":"individual-meal-waste-percentage",
+    "totalMealWastePercentage":"total-meal-waste-percentage",
+    "excelDownloadUrl":"http://localhost:8080/monthlyExcelReport"
+    
+ 
  
 }
