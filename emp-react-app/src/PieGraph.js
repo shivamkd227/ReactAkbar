@@ -18,12 +18,7 @@ export class PieGraph extends React.Component {
              <VictoryPie
       colorScale={["rgba(255, 29, 79, 0.8)", "rgba(79, 255, 81, 0.8)", "rgba(241, 242, 53, 0.8)"]}
       data={processedData}
-      labelComponent={
-        <VictoryTooltip
-          dy={-10} // Adjust the distance from the center of the pie slice
-          constrainToVisibleArea
-        />
-      }
+     
       labels={({ datum }) => `${datum.x}: ${datum.y}%`}
     />
         </div>

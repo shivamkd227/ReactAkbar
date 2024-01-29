@@ -103,6 +103,7 @@ class Popup extends Component {
 
   fetchData = () => {
     setTimeout(() => {
+      this.setState({isLoading:false})
     }, 3000); 
   };
 
