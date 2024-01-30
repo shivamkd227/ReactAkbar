@@ -127,6 +127,7 @@ export class MealTable extends React.Component {
   render() {
     const { month } = this.props; 
     return (
+      
       <div className='App-body'>
          {this.state.showWarning && (
           <WarningBox 
