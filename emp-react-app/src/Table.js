@@ -21,51 +21,61 @@ export class MealTable extends React.Component {
   }
 
   componentDidMount() {   
-    const {base_api, fetchMonthlyDataEndpoint , fineForMonthEndpoint, dayWiseReportEndpoint } = constants;
-    let api_url = base_api + fetchMonthlyDataEndpoint;
-    let payload = this.getMonthNumber(this.props.month);
-    //fetchMonthlyData i.e call Benzy's API to get all food order data for given month
-    fetchPost(api_url, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'text/plain'
-        }
-    },
-    payload)
-    .then(data => console.log(data))
-    .catch(error => console.error(error));//No processing; capture no response. Later, extract and show employee name.
+    this.loadData();
+  }
+  componentDidMount() {
+    // Initial data fetching or any other setup
+    this.loadData();
+  }
 
-    api_url = base_api + fineForMonthEndpoint;
-    fetchPost(api_url, {
-      method: 'POST', 
-      headers: {
+  loadData = async () => {
+    try {
+      const { base_api, fetchMonthlyDataEndpoint, fineForMonthEndpoint, dayWiseReportEndpoint } = constants;
+      let api_url = base_api + fetchMonthlyDataEndpoint;
+      let payload = this.getMonthNumber(this.props.month);
+
+      const monthlyDataResponse = await fetchPost(api_url, {
+        method: 'POST',
+        headers: {
           'Content-Type': 'text/plain'
-      }
-    },
-    payload)
-    .then(data =>{
-         console.log(data)
-         let totalFine = data.fine;
-         if(totalFine != 0){
-            this.setState({ fine: totalFine, showWarning: true });
-         }
-        })
-    .catch(error => console.error(error));
-    
-    api_url = base_api + dayWiseReportEndpoint;
-    fetchPost(api_url, {
-      method: 'POST', 
-      headers: {
+        }
+      }, payload);
+
+      console.log(monthlyDataResponse);
+
+      // Process the response if needed
+
+      api_url = base_api + fineForMonthEndpoint;
+      const fineResponse = await fetchPost(api_url, {
+        method: 'POST',
+        headers: {
           'Content-Type': 'text/plain'
+        }
+      }, payload);
+
+      console.log(fineResponse);
+
+      let totalFine = fineResponse.fine;
+      if (totalFine !== 0) {
+        this.setState({ fine: totalFine, showWarning: true });
       }
-    },
-    payload)
-    .then(data =>{
-         console.log(data)
-         let mealsReport = this.convertDataToReportFormat(data);
-         this.setState({ meals: mealsReport.report });
-        })
-    .catch(error => console.error(error));
+
+      api_url = base_api + dayWiseReportEndpoint;
+      const dayWiseReportResponse = await fetchPost(api_url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain'
+        }
+      }, payload);
+
+      console.log(dayWiseReportResponse);
+
+      let mealsReport = this.convertDataToReportFormat(dayWiseReportResponse);
+      this.setState({ meals: mealsReport.report });
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   convertDataToReportFormat(data) {
