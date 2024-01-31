@@ -25,6 +25,7 @@ export class MealTable extends React.Component {
   }
   componentDidUpdate(prevProps) {
     if (this.props.month !== prevProps.month) {
+      this.setState({ showWarning: false });
       this.loadData();
     }
   }
@@ -43,8 +44,6 @@ export class MealTable extends React.Component {
       }, payload);
 
       console.log(monthlyDataResponse);
-
-      // Process the response if needed
 
       api_url = base_api + fineForMonthEndpoint;
       const fineResponse = await fetchPost(api_url, {
