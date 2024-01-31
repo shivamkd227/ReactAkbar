@@ -23,9 +23,10 @@ export class MealTable extends React.Component {
   componentDidMount() {   
     this.loadData();
   }
-  componentDidMount() {
-    // Initial data fetching or any other setup
-    this.loadData();
+  componentDidUpdate(prevProps) {
+    if (this.props.month !== prevProps.month) {
+      this.loadData();
+    }
   }
 
   loadData = async () => {
